@@ -1,0 +1,1833 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>pyramid_jsonapi package &#8212; pyramid_jsonapi 1.0.4.dev13 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0.4.dev13',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="pyramid_jsonapi.callbacks_doc module" href="pyramid_jsonapi.callbacks_doc.html" />
+    <link rel="prev" title="pyramid-jsonapi Documentation" href="../index.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pyramid-jsonapi-package">
+<h1>pyramid_jsonapi package<a class="headerlink" href="#pyramid-jsonapi-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pyramid_jsonapi.callbacks_doc.html">pyramid_jsonapi.callbacks_doc module</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="module-pyramid_jsonapi">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pyramid_jsonapi" title="Permalink to this headline">¶</a></h2>
+<p>Tools for constructing a JSON-API from sqlalchemy models in Pyramid.</p>
+<dl class="class">
+<dt id="pyramid_jsonapi.CollectionViewBase">
+<em class="property">class </em><code class="descclassname">pyramid_jsonapi.</code><code class="descname">CollectionViewBase</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyramid_jsonapi.html#CollectionViewBase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyramid_jsonapi.CollectionViewBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+<p>Base class for all view classes.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>request</strong> (<em>pyramid.request</em>) – passed by framework.</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="pyramid_jsonapi.CollectionViewBase.acso_after_get">
+<code class="descname">acso_after_get</code><span class="sig-paren">(</span><em>view</em>, <em>ret</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyramid_jsonapi.html#CollectionViewBase.acso_after_get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyramid_jsonapi.CollectionViewBase.acso_after_get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Standard callback throwing 403 (Forbidden) based on information in meta.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>ret</strong> (<a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)"><em>dict</em></a>) – dict which would have been returned from get().</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the same object if an error has not been raised.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)">dict</a></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal"><span class="pre">HTTPForbidden</span></code></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyramid_jsonapi.CollectionViewBase.acso_after_serialise_object">
+<code class="descname">acso_after_serialise_object</code><span class="sig-paren">(</span><em>view</em>, <em>obj</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyramid_jsonapi.html#CollectionViewBase.acso_after_serialise_object"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyramid_jsonapi.CollectionViewBase.acso_after_serialise_object" title="Permalink to this definition">¶</a></dt>
+<dd><p>Standard callback altering object to take account of permissions.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>obj</strong> (<a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)"><em>dict</em></a>) – the object immediately after serialisation.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the object, possibly with some fields removed, or meta
+information indicating permission was denied to the whole object.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)">dict</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyramid_jsonapi.CollectionViewBase.allowed_fields">
+<code class="descname">allowed_fields</code><a class="headerlink" href="#pyramid_jsonapi.CollectionViewBase.allowed_fields" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set of fields to which current action is allowed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">set of allowed field names.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#set" title="(in Python v2.7)">set</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyramid_jsonapi.CollectionViewBase.allowed_object">
+<code class="descname">allowed_object</code><span class="sig-paren">(</span><em>obj</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyramid_jsonapi.html#CollectionViewBase.allowed_object"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyramid_jsonapi.CollectionViewBase.allowed_object" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether or not current action is allowed on object.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/2/library/functions.html#bool" title="(in Python v2.7)">bool</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyramid_jsonapi.CollectionViewBase.allowed_requested_query_columns">
+<code class="descname">allowed_requested_query_columns</code><a class="headerlink" href="#pyramid_jsonapi.CollectionViewBase.allowed_requested_query_columns" title="Permalink to this definition">¶</a></dt>
+<dd><p>All columns required in query to fetch allowed requested fields from
+db.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Union of allowed requested_attributes and
+allowed_requested_relationships_local_columns</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)">dict</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyramid_jsonapi.CollectionViewBase.allowed_requested_relationships_local_columns">
+<code class="descname">allowed_requested_relationships_local_columns</code><a class="headerlink" href="#pyramid_jsonapi.CollectionViewBase.allowed_requested_relationships_local_columns" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds all the local columns for allowed MANYTOONE relationships.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">local columns indexed by column name.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)">dict</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="pyramid_jsonapi.CollectionViewBase.append_callback_set">
+<em class="property">classmethod </em><code class="descname">append_callback_set</code><span class="sig-paren">(</span><em>set_name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyramid_jsonapi.html#CollectionViewBase.append_callback_set"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyramid_jsonapi.CollectionViewBase.append_callback_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Append a named set of callbacks from <code class="docutils literal"><span class="pre">callback_sets</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>set_name</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) – key in <code class="docutils literal"><span class="pre">callback_sets</span></code>.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyramid_jsonapi.CollectionViewBase.attributes">
+<code class="descname">attributes</code><em class="property"> = None</em><a class="headerlink" href="#pyramid_jsonapi.CollectionViewBase.attributes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pyramid_jsonapi.CollectionViewBase.bad_include_paths">
+<code class="descname">bad_include_paths</code><a class="headerlink" href="#pyramid_jsonapi.CollectionViewBase.bad_include_paths" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a set of invalid ‘include’ parameters.</p>
+<p><strong>Query Parameters</strong></p>
+<blockquote>
+<div><strong>include:</strong> comma separated list of related resources to include
+in the include section.</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">set of requested include paths with no corresponding
+attribute.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#set" title="(in Python v2.7)">set</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyramid_jsonapi.CollectionViewBase.callback_sets">
+<code class="descname">callback_sets</code><em class="property"> = {'access_control_serialised_objects': {'after_get': &lt;function CollectionViewBase.acso_after_get&gt;, 'after_serialise_object': &lt;function CollectionViewBase.acso_after_serialise_object&gt;}}</em><a class="headerlink" href="#pyramid_jsonapi.CollectionViewBase.callback_sets" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pyramid_jsonapi.CollectionViewBase.callbacks">
+<code class="descname">callbacks</code><em class="property"> = None</em><a class="headerlink" href="#pyramid_jsonapi.CollectionViewBase.callbacks" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pyramid_jsonapi.CollectionViewBase.collection_get">
+<code class="descname">collection_get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyramid_jsonapi.html#CollectionViewBase.collection_get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyramid_jsonapi.CollectionViewBase.collection_get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handle GET requests for the collection.</p>
+<p>Get a set of items from the collection, possibly matching search/filter
+parameters. Optionally sort the results, page them, return only certain
+fields, and include related resources.</p>
+<p><strong>Query Parameters</strong></p>
+<blockquote>
+<div><p><strong>include:</strong> comma separated list of related resources to include
+in the include section.</p>
+<p><strong>fields[&lt;collection&gt;]:</strong> comma separated list of fields
+(attributes or relationships) to include in data.</p>
+<p><strong>sort:</strong> comma separated list of sort keys.</p>
+<p><strong>page[limit]:</strong> number of results to return per page.</p>
+<p><strong>page[offset]:</strong> starting index for current page.</p>
+<p><strong>filter[&lt;attribute&gt;:&lt;op&gt;]:</strong> filter operation.</p>
+</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">dict in the form:<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">resource</span> <span class="n">objects</span> <span class="p">],</span>
+    <span class="s2">&quot;links&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="n">links</span> <span class="nb">object</span> <span class="p">},</span>
+    <span class="s2">&quot;include&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="n">optional</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">included</span> <span class="n">resource</span> <span class="n">objects</span> <span class="p">],</span>
+    <span class="s2">&quot;meta&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="n">implementation</span> <span class="n">specific</span> <span class="n">information</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)">dict</a></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal"><span class="pre">HTTPBadRequest</span></code></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<p>Get up to default page limit people resources:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">http</span> <span class="n">GET</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">6543</span><span class="o">/</span><span class="n">people</span>
+</pre></div>
+</div>
+<p>Get the second page of two people, reverse sorted by name and
+include the related posts as included documents:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>http GET http://localhost:6543/people?page[limit]=2&amp;page[offset]=2&amp;sort=-name&amp;include=posts
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyramid_jsonapi.CollectionViewBase.collection_name">
+<code class="descname">collection_name</code><em class="property"> = None</em><a class="headerlink" href="#pyramid_jsonapi.CollectionViewBase.collection_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pyramid_jsonapi.CollectionViewBase.collection_post">
+<code class="descname">collection_post</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyramid_jsonapi.html#CollectionViewBase.collection_post"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyramid_jsonapi.CollectionViewBase.collection_post" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handle POST requests for the collection.</p>
+<p>Create a new object in collection.</p>
+<p><strong>Request Body</strong></p>
+<blockquote>
+<div><p><strong>resource object</strong> (<em>json</em>) in the form:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="n">resource</span> <span class="nb">object</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><p>dict in the form:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="n">resource</span> <span class="nb">object</span> <span class="p">},</span>
+    <span class="s2">&quot;links&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;self&quot;</span><span class="p">:</span> <span class="bp">self</span> <span class="n">url</span><span class="p">,</span>
+        <span class="n">maybe</span> <span class="n">other</span> <span class="n">links</span><span class="o">...</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;meta&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="n">jsonapi</span> <span class="n">specific</span> <span class="n">information</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first"><a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)">dict</a></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><code class="xref py py-exc docutils literal"><span class="pre">HTTPForbidden</span></code> – if an id is presented in “data” and client ids are</li>
+<li>not supported.</li>
+<li><code class="xref py py-exc docutils literal"><span class="pre">HTTPConflict</span></code> – if type is not present or is different from the</li>
+<li>collection name.</li>
+<li><code class="xref py py-exc docutils literal"><span class="pre">HTTPNotFound</span></code> – if a non existent relationship is referenced in the</li>
+<li>supplied resource object.</li>
+<li><code class="xref py py-exc docutils literal"><span class="pre">HTTPConflict</span></code> – if creating the object would break a database</li>
+<li>constraint (most commonly if an id is supplied by the client and</li>
+<li>an item with that id already exists).</li>
+<li><code class="xref py py-exc docutils literal"><span class="pre">HTTPBadRequest</span></code> – if the request is malformed in some other way.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<p>Create a new person with name ‘monty’ and let the server pick the
+id:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">http</span> <span class="n">POST</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">6543</span><span class="o">/</span><span class="n">people</span> <span class="n">data</span><span class="p">:</span><span class="o">=</span><span class="s1">&#39;</span>
+<span class="p">{</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;people&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;monty&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span><span class="s1">&#39; Content-Type:application/vnd.api+json</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="pyramid_jsonapi.CollectionViewBase.collection_query_info">
+<em class="property">classmethod </em><code class="descname">collection_query_info</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyramid_jsonapi.html#CollectionViewBase.collection_query_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyramid_jsonapi.CollectionViewBase.collection_query_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return dictionary of information used during DB query.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>request</strong> (<em>pyramid.request</em>) – request object.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">query info in the form:<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s1">&#39;page[limit]&#39;</span><span class="p">:</span> <span class="n">maximum</span> <span class="n">items</span> <span class="n">per</span> <span class="n">page</span><span class="p">,</span>
+    <span class="s1">&#39;page[offset]&#39;</span><span class="p">:</span> <span class="n">offset</span> <span class="k">for</span> <span class="n">current</span> <span class="n">page</span> <span class="p">(</span><span class="ow">in</span> <span class="n">items</span><span class="p">),</span>
+    <span class="s1">&#39;sort&#39;</span><span class="p">:</span> <span class="n">sort</span> <span class="n">param</span> <span class="kn">from</span> <span class="nn">request</span><span class="p">,</span>
+    <span class="s1">&#39;_sort&#39;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s1">&#39;key&#39;</span><span class="p">:</span> <span class="n">sort</span> <span class="n">key</span> <span class="p">(</span><span class="s1">&#39;field&#39;</span> <span class="ow">or</span> <span class="s1">&#39;relationship.field&#39;</span><span class="p">),</span>
+            <span class="s1">&#39;ascending&#39;</span><span class="p">:</span> <span class="n">sort</span> <span class="n">ascending</span> <span class="ow">or</span> <span class="n">descending</span> <span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
+        <span class="p">},</span>
+        <span class="o">...</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;_filters&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="n">filter_param_name</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;colspec&#39;</span><span class="p">:</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">columns</span> <span class="n">split</span> <span class="n">on</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;op&#39;</span><span class="p">:</span> <span class="nb">filter</span> <span class="n">operator</span><span class="p">,</span>
+            <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="n">value</span> <span class="n">of</span> <span class="nb">filter</span> <span class="n">param</span><span class="p">,</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;_page&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="n">paging_param_name</span><span class="p">:</span> <span class="n">value</span><span class="p">,</span>
+        <span class="o">...</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Keys beginning with ‘_’ are derived.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)">dict</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyramid_jsonapi.CollectionViewBase.collection_return">
+<code class="descname">collection_return</code><span class="sig-paren">(</span><em>query</em>, <em>count=None</em>, <em>identifiers=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyramid_jsonapi.html#CollectionViewBase.collection_return"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyramid_jsonapi.CollectionViewBase.collection_return" title="Permalink to this definition">¶</a></dt>
+<dd><p>Populate return dictionary for collections.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>query</strong> (<em>sqlalchemy.orm.query.Query</em>) – query designed to return multiple</li>
+<li><strong>items.</strong> – </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first simple">
+<li><strong>count</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) – Number of items the query will return (if known).</li>
+<li><strong>identifiers</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#bool" title="(in Python v2.7)"><em>bool</em></a>) – return identifiers if True, objects if false.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><p>dict in the form:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="n">resource</span> <span class="n">objects</span> <span class="p">]</span>
+
+    <span class="n">optionally</span><span class="o">...</span>
+    <span class="s2">&quot;included&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="n">included</span> <span class="n">objects</span> <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span> <span class="n">resource</span> <span class="n">identifiers</span> <span class="p">]</span>
+</pre></div>
+</div>
+</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first"><a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)">dict</a></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><code class="xref py py-exc docutils literal"><span class="pre">HTTPBadRequest</span></code> – If a count was not supplied and an attempt to call</li>
+<li>q.count() failed.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyramid_jsonapi.CollectionViewBase.column_info_from_name">
+<code class="descname">column_info_from_name</code><span class="sig-paren">(</span><em>name</em>, <em>model=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyramid_jsonapi.html#CollectionViewBase.column_info_from_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyramid_jsonapi.CollectionViewBase.column_info_from_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the pyramid_jsonapi info dictionary for a column.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) – name of column.</li>
+<li><strong>model</strong> (<em>sqlalchemy.ext.declarative.declarative_base</em>) – model to
+inspect. Defaults to self.model.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyramid_jsonapi.CollectionViewBase.config">
+<code class="descname">config</code><em class="property"> = None</em><a class="headerlink" href="#pyramid_jsonapi.CollectionViewBase.config" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pyramid_jsonapi.CollectionViewBase.default_limit">
+<code class="descname">default_limit</code><em class="property"> = None</em><a class="headerlink" href="#pyramid_jsonapi.CollectionViewBase.default_limit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pyramid_jsonapi.CollectionViewBase.delete">
+<code class="descname">delete</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyramid_jsonapi.html#CollectionViewBase.delete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyramid_jsonapi.CollectionViewBase.delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handle DELETE request for single item.</p>
+<p>Delete the referenced item from the collection.</p>
+<p><strong>URL (matchdict) Parameters</strong></p>
+<blockquote>
+<div><strong>id</strong> (<em>str</em>): resource id</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Resource Identifier for deleted object.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)">dict</a></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal"><span class="pre">HTTPFailedDependency</span></code> – if collection/id does not exist</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Example</p>
+<p>delete person 1:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">http</span> <span class="n">DELETE</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">6543</span><span class="o">/</span><span class="n">people</span><span class="o">/</span><span class="mi">1</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyramid_jsonapi.CollectionViewBase.endpoint_data">
+<code class="descname">endpoint_data</code><em class="property"> = None</em><a class="headerlink" href="#pyramid_jsonapi.CollectionViewBase.endpoint_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pyramid_jsonapi.CollectionViewBase.exposed_fields">
+<code class="descname">exposed_fields</code><em class="property"> = None</em><a class="headerlink" href="#pyramid_jsonapi.CollectionViewBase.exposed_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pyramid_jsonapi.CollectionViewBase.fields">
+<code class="descname">fields</code><em class="property"> = None</em><a class="headerlink" href="#pyramid_jsonapi.CollectionViewBase.fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pyramid_jsonapi.CollectionViewBase.filter_registry">
+<code class="descname">filter_registry</code><em class="property"> = None</em><a class="headerlink" href="#pyramid_jsonapi.CollectionViewBase.filter_registry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pyramid_jsonapi.CollectionViewBase.get">
+<code class="descname">get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyramid_jsonapi.html#CollectionViewBase.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyramid_jsonapi.CollectionViewBase.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handle GET request for a single item.</p>
+<p>Get a single item from the collection, referenced by id.</p>
+<p><strong>URL (matchdict) Parameters</strong></p>
+<blockquote>
+<div><strong>id</strong> (<em>str</em>): resource id</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">dict in the form:<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="n">resource</span> <span class="nb">object</span> <span class="p">},</span>
+    <span class="s2">&quot;links&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;self&quot;</span><span class="p">:</span> <span class="bp">self</span> <span class="n">url</span><span class="p">,</span>
+        <span class="n">maybe</span> <span class="n">other</span> <span class="n">links</span><span class="o">...</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;meta&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="n">jsonapi</span> <span class="n">specific</span> <span class="n">information</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)">dict</a></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal"><span class="pre">HTTPNotFound</span></code></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Example</p>
+<p>Get person 1:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">http</span> <span class="n">GET</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">6543</span><span class="o">/</span><span class="n">people</span><span class="o">/</span><span class="mi">1</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyramid_jsonapi.CollectionViewBase.get_dbsession">
+<code class="descname">get_dbsession</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyramid_jsonapi.CollectionViewBase.get_dbsession" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pyramid_jsonapi.CollectionViewBase.hybrid_attributes">
+<code class="descname">hybrid_attributes</code><em class="property"> = None</em><a class="headerlink" href="#pyramid_jsonapi.CollectionViewBase.hybrid_attributes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="pyramid_jsonapi.CollectionViewBase.id_col">
+<em class="property">static </em><code class="descname">id_col</code><span class="sig-paren">(</span><em>item</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyramid_jsonapi.html#CollectionViewBase.id_col"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyramid_jsonapi.CollectionViewBase.id_col" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pyramid_jsonapi.CollectionViewBase.jsonapi_view">
+<code class="descname">jsonapi_view</code><span class="sig-paren">(</span><em>func</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyramid_jsonapi.html#CollectionViewBase.jsonapi_view"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyramid_jsonapi.CollectionViewBase.jsonapi_view" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decorator for view functions. Adds jsonapi boilerplate.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyramid_jsonapi.CollectionViewBase.key_column">
+<code class="descname">key_column</code><em class="property"> = None</em><a class="headerlink" href="#pyramid_jsonapi.CollectionViewBase.key_column" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pyramid_jsonapi.CollectionViewBase.max_limit">
+<code class="descname">max_limit</code><em class="property"> = None</em><a class="headerlink" href="#pyramid_jsonapi.CollectionViewBase.max_limit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pyramid_jsonapi.CollectionViewBase.model">
+<code class="descname">model</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyramid_jsonapi.CollectionViewBase.model" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pyramid_jsonapi.CollectionViewBase.object_exists">
+<code class="descname">object_exists</code><span class="sig-paren">(</span><em>obj_id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyramid_jsonapi.html#CollectionViewBase.object_exists"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyramid_jsonapi.CollectionViewBase.object_exists" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test if object with id obj_id exists.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>obj_id</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) – object id</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">True if object exists, False if not.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/2/library/functions.html#bool" title="(in Python v2.7)">bool</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyramid_jsonapi.CollectionViewBase.pagination_links">
+<code class="descname">pagination_links</code><span class="sig-paren">(</span><em>count=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyramid_jsonapi.html#CollectionViewBase.pagination_links"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyramid_jsonapi.CollectionViewBase.pagination_links" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a dictionary of pagination links.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>count</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) – total number of results available.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">dictionary of named links.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)">dict</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyramid_jsonapi.CollectionViewBase.patch">
+<code class="descname">patch</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyramid_jsonapi.html#CollectionViewBase.patch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyramid_jsonapi.CollectionViewBase.patch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handle PATCH request for a single item.</p>
+<p>Update an existing item from a partially defined representation.</p>
+<p><strong>URL (matchdict) Parameters</strong></p>
+<blockquote>
+<div><strong>id</strong> (<em>str</em>): resource id</div></blockquote>
+<p><strong>Request Body</strong></p>
+<blockquote>
+<div><strong>Partial resource object</strong> (<em>json</em>)</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">dict in the form:<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s1">&#39;meta&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;updated&#39;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="o">&lt;</span><span class="n">attribute_name</span><span class="o">&gt;</span><span class="p">,</span>
+            <span class="o">&lt;</span><span class="n">attribute_name</span><span class="o">&gt;</span>
+        <span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)">dict</a></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal"><span class="pre">HTTPNotFound</span></code></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Example</p>
+<p>PATCH person 1, changing name to alicia:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">http</span> <span class="n">PATCH</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">6543</span><span class="o">/</span><span class="n">people</span><span class="o">/</span><span class="mi">1</span> <span class="n">data</span><span class="p">:</span><span class="o">=</span><span class="s1">&#39;</span>
+<span class="p">{</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;people&quot;</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;alicia&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span><span class="s1">&#39; Content-Type:application/vnd.api+json</span>
+</pre></div>
+</div>
+<p>Change the author of posts/1 to people/2:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">http</span> <span class="n">PATCH</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">6543</span><span class="o">/</span><span class="n">posts</span><span class="o">/</span><span class="mi">1</span> <span class="n">data</span><span class="p">:</span><span class="o">=</span><span class="s1">&#39;</span>
+<span class="p">{</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;posts&quot;</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;relationships&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;author&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;people&quot;</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;2&quot;</span><span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span><span class="s1">&#39; Content-Type:application/vnd.api+json</span>
+</pre></div>
+</div>
+<p>Set the comments on posts/1 to be [comments/4, comments/5]:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">http</span> <span class="n">PATCH</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">6543</span><span class="o">/</span><span class="n">posts</span><span class="o">/</span><span class="mi">1</span> <span class="n">data</span><span class="p">:</span><span class="o">=</span><span class="s1">&#39;</span>
+<span class="p">{</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;posts&quot;</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;relationships&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;comments&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;comments&quot;</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;4&quot;</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;comments&quot;</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;5&quot;</span><span class="p">}</span>
+        <span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">}</span><span class="s1">&#39; Content-Type:application/vnd.api+json</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyramid_jsonapi.CollectionViewBase.query_add_filtering">
+<code class="descname">query_add_filtering</code><span class="sig-paren">(</span><em>query</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyramid_jsonapi.html#CollectionViewBase.query_add_filtering"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyramid_jsonapi.CollectionViewBase.query_add_filtering" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add filtering clauses to query.</p>
+<p>Use information from the <code class="docutils literal"><span class="pre">filter</span></code> query parameter (via
+<a class="reference internal" href="#pyramid_jsonapi.CollectionViewBase.collection_query_info" title="pyramid_jsonapi.CollectionViewBase.collection_query_info"><code class="xref py py-func docutils literal"><span class="pre">collection_query_info()</span></code></a>) to filter query results.</p>
+<p>Filter parameter structure:</p>
+<blockquote>
+<div><code class="docutils literal"><span class="pre">filter[&lt;attribute&gt;:&lt;op&gt;]=&lt;value&gt;</span></code></div></blockquote>
+<p>where:</p>
+<blockquote>
+<div><p><code class="docutils literal"><span class="pre">attribute</span></code> is an attribute of the queried object type.</p>
+<p><code class="docutils literal"><span class="pre">op</span></code> is the comparison operator.</p>
+<p><code class="docutils literal"><span class="pre">value</span></code> is the value the comparison operator should compare to.</p>
+</div></blockquote>
+<dl class="docutils">
+<dt>Valid comparison operators:</dt>
+<dd>Only operators added via self.filter_registry.register() are
+considered valid. Get a list of filter names with
+self.filter_registry.valid_filter_names()</dd>
+</dl>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><code class="docutils literal"><span class="pre">_filters</span></code> key from <a class="reference internal" href="#pyramid_jsonapi.CollectionViewBase.collection_query_info" title="pyramid_jsonapi.CollectionViewBase.collection_query_info"><code class="xref py py-func docutils literal"><span class="pre">collection_query_info()</span></code></a></p>
+</div>
+<dl class="docutils">
+<dt><strong>Query Parameters</strong></dt>
+<dd><strong>filter[&lt;attribute&gt;:&lt;op&gt;]:</strong> filter operation.</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>query</strong> (<em>sqlalchemy.orm.query.Query</em>) – query</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">filtered query.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">sqlalchemy.orm.query.Query</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<p>Get people whose name is ‘alice’</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>http GET http://localhost:6543/people?filter[name:eq]=alice
+</pre></div>
+</div>
+<p>Get posts published after 2015-01-03:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>http GET http://localhost:6543/posts?filter[published_at:gt]=2015-01-03
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyramid_jsonapi.CollectionViewBase.query_add_sorting">
+<code class="descname">query_add_sorting</code><span class="sig-paren">(</span><em>query</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyramid_jsonapi.html#CollectionViewBase.query_add_sorting"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyramid_jsonapi.CollectionViewBase.query_add_sorting" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add sorting to query.</p>
+<p>Use information from the <code class="docutils literal"><span class="pre">sort</span></code> query parameter (via
+<a class="reference internal" href="#pyramid_jsonapi.CollectionViewBase.collection_query_info" title="pyramid_jsonapi.CollectionViewBase.collection_query_info"><code class="xref py py-func docutils literal"><span class="pre">collection_query_info()</span></code></a>) to contruct an <code class="docutils literal"><span class="pre">order_by</span></code> clause on
+the query.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><code class="docutils literal"><span class="pre">_sort</span></code> key from <a class="reference internal" href="#pyramid_jsonapi.CollectionViewBase.collection_query_info" title="pyramid_jsonapi.CollectionViewBase.collection_query_info"><code class="xref py py-func docutils literal"><span class="pre">collection_query_info()</span></code></a></p>
+</div>
+<dl class="docutils">
+<dt><strong>Query Parameters</strong></dt>
+<dd><strong>sort:</strong> comma separated list of sort keys.</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>query</strong> (<em>sqlalchemy.orm.query.Query</em>) – query</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">query with <code class="docutils literal"><span class="pre">order_by</span></code> clause.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">sqlalchemy.orm.query.Query</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyramid_jsonapi.CollectionViewBase.related_get">
+<code class="descname">related_get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyramid_jsonapi.html#CollectionViewBase.related_get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyramid_jsonapi.CollectionViewBase.related_get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handle GET requests for related URLs.</p>
+<p>Get object(s) related to a specified object.</p>
+<p><strong>URL (matchdict) Parameters</strong></p>
+<blockquote>
+<div><strong>id</strong> (<em>str</em>): resource id
+<strong>relname</strong> (<em>str</em>): relationship name</div></blockquote>
+<dl class="docutils">
+<dt><strong>Query Parameters</strong></dt>
+<dd><p class="first"><strong>sort:</strong> comma separated list of sort keys.</p>
+<p class="last"><strong>filter[&lt;attribute&gt;:&lt;op&gt;]:</strong> filter operation.</p>
+</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><p>dict in the form:</p>
+<p>For a TOONE relationship (return one object):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="n">resource</span> <span class="nb">object</span> <span class="p">},</span>
+    <span class="s2">&quot;links&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;self&quot;</span><span class="p">:</span> <span class="bp">self</span> <span class="n">url</span><span class="p">,</span>
+        <span class="n">maybe</span> <span class="n">other</span> <span class="n">links</span><span class="o">...</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;meta&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="n">jsonapi</span> <span class="n">specific</span> <span class="n">information</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>For a TOMANY relationship (return multiple objects):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="p">{</span> <span class="n">resource</span> <span class="nb">object</span> <span class="p">},</span> <span class="o">...</span> <span class="p">]</span>
+    <span class="s2">&quot;links&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;self&quot;</span><span class="p">:</span> <span class="bp">self</span> <span class="n">url</span><span class="p">,</span>
+        <span class="n">maybe</span> <span class="n">other</span> <span class="n">links</span><span class="o">...</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;meta&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="n">jsonapi</span> <span class="n">specific</span> <span class="n">information</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first"><a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)">dict</a></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><code class="xref py py-exc docutils literal"><span class="pre">HTTPNotFound</span></code> – if <cite>relname</cite> is not found as a relationship.</li>
+<li><code class="xref py py-exc docutils literal"><span class="pre">HTTPBadRequest</span></code> – if a bad filter is used.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<p>Get the author of post 1:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">http</span> <span class="n">GET</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">6543</span><span class="o">/</span><span class="n">posts</span><span class="o">/</span><span class="mi">1</span><span class="o">/</span><span class="n">author</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyramid_jsonapi.CollectionViewBase.related_limit">
+<code class="descname">related_limit</code><span class="sig-paren">(</span><em>relationship</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyramid_jsonapi.html#CollectionViewBase.related_limit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyramid_jsonapi.CollectionViewBase.related_limit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Paging limit for related resources.</p>
+<p><strong>Query Parameters</strong></p>
+<blockquote>
+<div><strong>page[limit:relationships:&lt;relname&gt;]:</strong> number of results to
+return per page for related resource &lt;relname&gt;.</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>relationship</strong> (<em>sqlalchemy.orm.relationships.RelationshipProperty</em>) – the relationship to get the limit for.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">paging limit for related resources.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)">int</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyramid_jsonapi.CollectionViewBase.related_query">
+<code class="descname">related_query</code><span class="sig-paren">(</span><em>obj_id</em>, <em>relationship</em>, <em>full_object=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyramid_jsonapi.html#CollectionViewBase.related_query"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyramid_jsonapi.CollectionViewBase.related_query" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct query for related objects.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>obj_id</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) – id of an item in this view’s collection.</li>
+<li><strong>relationship</strong> (<em>sqlalchemy.orm.relationships.RelationshipProperty</em>) – the relationships to get related objects from.</li>
+<li><strong>full_object</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#bool" title="(in Python v2.7)"><em>bool</em></a>) – if full_object is <code class="docutils literal"><span class="pre">True</span></code>, query for all
+requested columns (probably to build resource objects). If
+full_object is False, only query for the key column (probably
+to build resource identifiers).</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">query which will fetch related
+object(s).</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">sqlalchemy.orm.query.Query</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyramid_jsonapi.CollectionViewBase.relationships">
+<code class="descname">relationships</code><em class="property"> = None</em><a class="headerlink" href="#pyramid_jsonapi.CollectionViewBase.relationships" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pyramid_jsonapi.CollectionViewBase.relationships_delete">
+<code class="descname">relationships_delete</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyramid_jsonapi.html#CollectionViewBase.relationships_delete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyramid_jsonapi.CollectionViewBase.relationships_delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handle DELETE requests for TOMANY relationships.</p>
+<p>Delete the specified member from the relationship.</p>
+<p><strong>URL (matchdict) Parameters</strong></p>
+<blockquote>
+<div><strong>id</strong> (<em>str</em>): resource id
+<strong>relname</strong> (<em>str</em>): relationship name</div></blockquote>
+<p><strong>Request Body</strong></p>
+<blockquote>
+<div><p><strong>resource identifier list</strong> (<em>json</em>) in the form:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="p">{</span> <span class="n">resource</span> <span class="n">identifier</span> <span class="p">},</span><span class="o">...</span> <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><p>dict in the form:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;links&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;self&quot;</span><span class="p">:</span> <span class="bp">self</span> <span class="n">url</span><span class="p">,</span>
+        <span class="n">maybe</span> <span class="n">other</span> <span class="n">links</span><span class="o">...</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;meta&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="n">jsonapi</span> <span class="n">specific</span> <span class="n">information</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first"><a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)">dict</a></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><code class="xref py py-exc docutils literal"><span class="pre">HTTPNotFound</span></code> – if there is no &lt;relname&gt; relationship.</li>
+<li><code class="xref py py-exc docutils literal"><span class="pre">HTTPNotFound</span></code> – if an attempt is made to modify a TOONE relationship.</li>
+<li><code class="xref py py-exc docutils literal"><span class="pre">HTTPConflict</span></code> – if a resource identifier is specified with a</li>
+<li>different type than that which the collection holds.</li>
+<li><code class="xref py py-exc docutils literal"><span class="pre">HTTPFailedDependency</span></code> – if a database constraint would be broken by</li>
+<li>adding the specified resource to the relationship.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<p>Delete comments/1 from posts/1 comments:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">http</span> <span class="n">DELETE</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">6543</span><span class="o">/</span><span class="n">posts</span><span class="o">/</span><span class="mi">1</span><span class="o">/</span><span class="n">relationships</span><span class="o">/</span><span class="n">comments</span> <span class="n">data</span><span class="p">:</span><span class="o">=</span><span class="s1">&#39;</span>
+<span class="p">[</span>
+    <span class="p">{</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;comments&quot;</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span> <span class="p">}</span>
+<span class="p">]</span><span class="s1">&#39; Content-Type:application/vnd.api+json</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyramid_jsonapi.CollectionViewBase.relationships_get">
+<code class="descname">relationships_get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyramid_jsonapi.html#CollectionViewBase.relationships_get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyramid_jsonapi.CollectionViewBase.relationships_get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handle GET requests for relationships URLs.</p>
+<p>Get object identifiers for items referred to by a relationship.</p>
+<p><strong>URL (matchdict) Parameters</strong></p>
+<blockquote>
+<div><strong>id</strong> (<em>str</em>): resource id
+<strong>relname</strong> (<em>str</em>): relationship name</div></blockquote>
+<dl class="docutils">
+<dt><strong>Query Parameters</strong></dt>
+<dd><p class="first"><strong>sort:</strong> comma separated list of sort keys.</p>
+<p class="last"><strong>filter[&lt;attribute&gt;:&lt;op&gt;]:</strong> filter operation.</p>
+</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">dict in the form:<p>For a TOONE relationship (return one identifier):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="n">resource</span> <span class="n">identifier</span> <span class="p">},</span>
+    <span class="s2">&quot;links&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;self&quot;</span><span class="p">:</span> <span class="bp">self</span> <span class="n">url</span><span class="p">,</span>
+        <span class="n">maybe</span> <span class="n">other</span> <span class="n">links</span><span class="o">...</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;meta&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="n">jsonapi</span> <span class="n">specific</span> <span class="n">information</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>For a TOMANY relationship (return multiple identifiers):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="p">{</span> <span class="n">resource</span> <span class="n">identifier</span> <span class="p">},</span> <span class="o">...</span> <span class="p">]</span>
+    <span class="s2">&quot;links&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;self&quot;</span><span class="p">:</span> <span class="bp">self</span> <span class="n">url</span><span class="p">,</span>
+        <span class="n">maybe</span> <span class="n">other</span> <span class="n">links</span><span class="o">...</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;meta&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="n">jsonapi</span> <span class="n">specific</span> <span class="n">information</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)">dict</a></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal"><span class="pre">HTTPBadRequest</span></code> – if a bad filter is used.</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<p>Get an identifer for the author of post 1:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">http</span> <span class="n">GET</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">6543</span><span class="o">/</span><span class="n">posts</span><span class="o">/</span><span class="mi">1</span><span class="o">/</span><span class="n">relationships</span><span class="o">/</span><span class="n">author</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyramid_jsonapi.CollectionViewBase.relationships_patch">
+<code class="descname">relationships_patch</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyramid_jsonapi.html#CollectionViewBase.relationships_patch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyramid_jsonapi.CollectionViewBase.relationships_patch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handle PATCH requests for relationships (TOMANY or TOONE).</p>
+<p>Completely replace the relationship membership.</p>
+<p><strong>URL (matchdict) Parameters</strong></p>
+<blockquote>
+<div><strong>id</strong> (<em>str</em>): resource id
+<strong>relname</strong> (<em>str</em>): relationship name</div></blockquote>
+<p><strong>Request Body</strong></p>
+<blockquote>
+<div><p><strong>resource identifier list</strong> (<em>json</em>) in the form:</p>
+<p>TOONE relationship:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="n">resource</span> <span class="n">identifier</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>TOMANY relationship:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="p">{</span> <span class="n">resource</span> <span class="n">identifier</span> <span class="p">},</span><span class="o">...</span> <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><p>dict in the form:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;links&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;self&quot;</span><span class="p">:</span> <span class="bp">self</span> <span class="n">url</span><span class="p">,</span>
+        <span class="n">maybe</span> <span class="n">other</span> <span class="n">links</span><span class="o">...</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;meta&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="n">jsonapi</span> <span class="n">specific</span> <span class="n">information</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first"><a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)">dict</a></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><code class="xref py py-exc docutils literal"><span class="pre">HTTPNotFound</span></code> – if there is no &lt;relname&gt; relationship.</li>
+<li><code class="xref py py-exc docutils literal"><span class="pre">HTTPConflict</span></code> – if a resource identifier is specified with a</li>
+<li>different type than that which the collection holds.</li>
+<li><code class="xref py py-exc docutils literal"><span class="pre">HTTPFailedDependency</span></code> – if a database constraint would be broken by</li>
+<li>adding the specified resource to the relationship.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<p>Replace comments list of posts/1:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">http</span> <span class="n">PATCH</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">6543</span><span class="o">/</span><span class="n">posts</span><span class="o">/</span><span class="mi">1</span><span class="o">/</span><span class="n">relationships</span><span class="o">/</span><span class="n">comments</span> <span class="n">data</span><span class="p">:</span><span class="o">=</span><span class="s1">&#39;</span>
+<span class="p">[</span>
+    <span class="p">{</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;comments&quot;</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;comments&quot;</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;2&quot;</span> <span class="p">}</span>
+<span class="p">]</span><span class="s1">&#39; Content-Type:application/vnd.api+json</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyramid_jsonapi.CollectionViewBase.relationships_post">
+<code class="descname">relationships_post</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyramid_jsonapi.html#CollectionViewBase.relationships_post"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyramid_jsonapi.CollectionViewBase.relationships_post" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handle POST requests for TOMANY relationships.</p>
+<p>Add the specified member to the relationship.</p>
+<p><strong>URL (matchdict) Parameters</strong></p>
+<blockquote>
+<div><strong>id</strong> (<em>str</em>): resource id
+<strong>relname</strong> (<em>str</em>): relationship name</div></blockquote>
+<p><strong>Request Body</strong></p>
+<blockquote>
+<div><p><strong>resource identifier list</strong> (<em>json</em>) in the form:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="p">{</span> <span class="n">resource</span> <span class="n">identifier</span> <span class="p">},</span><span class="o">...</span> <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><p>dict in the form:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;links&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;self&quot;</span><span class="p">:</span> <span class="bp">self</span> <span class="n">url</span><span class="p">,</span>
+        <span class="n">maybe</span> <span class="n">other</span> <span class="n">links</span><span class="o">...</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;meta&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="n">jsonapi</span> <span class="n">specific</span> <span class="n">information</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first"><a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)">dict</a></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><code class="xref py py-exc docutils literal"><span class="pre">HTTPNotFound</span></code> – if there is no &lt;relname&gt; relationship.</li>
+<li><code class="xref py py-exc docutils literal"><span class="pre">HTTPNotFound</span></code> – if an attempt is made to modify a TOONE relationship.</li>
+<li><code class="xref py py-exc docutils literal"><span class="pre">HTTPConflict</span></code> – if a resource identifier is specified with a</li>
+<li>different type than that which the collection holds.</li>
+<li><code class="xref py py-exc docutils literal"><span class="pre">HTTPFailedDependency</span></code> – if a database constraint would be broken by</li>
+<li>adding the specified resource to the relationship.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<p>Add comments/1 as a comment of posts/1</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">http</span> <span class="n">POST</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">6543</span><span class="o">/</span><span class="n">posts</span><span class="o">/</span><span class="mi">1</span><span class="o">/</span><span class="n">relationships</span><span class="o">/</span><span class="n">comments</span> <span class="n">data</span><span class="p">:</span><span class="o">=</span><span class="s1">&#39;</span>
+<span class="p">[</span>
+    <span class="p">{</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;comments&quot;</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span> <span class="p">}</span>
+<span class="p">]</span><span class="s1">&#39; Content-Type:application/vnd.api+json</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyramid_jsonapi.CollectionViewBase.request">
+<code class="descname">request</code><em class="property"> = None</em><a class="headerlink" href="#pyramid_jsonapi.CollectionViewBase.request" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pyramid_jsonapi.CollectionViewBase.requested_attributes">
+<code class="descname">requested_attributes</code><a class="headerlink" href="#pyramid_jsonapi.CollectionViewBase.requested_attributes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a dictionary of attributes.</p>
+<p><strong>Query Parameters</strong></p>
+<blockquote>
+<div><strong>fields[&lt;collection&gt;]:</strong> comma separated list of fields
+(attributes or relationships) to include in data.</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">dict in the form:<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="o">&lt;</span><span class="n">colname</span><span class="o">&gt;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">column_object</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="o">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)">dict</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyramid_jsonapi.CollectionViewBase.requested_field_names">
+<code class="descname">requested_field_names</code><a class="headerlink" href="#pyramid_jsonapi.CollectionViewBase.requested_field_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the sparse field names from request.</p>
+<p><strong>Query Parameters</strong></p>
+<blockquote>
+<div><strong>fields[&lt;collection&gt;]:</strong> comma separated list of fields
+(attributes or relationships) to include in data.</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">set of field names.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#set" title="(in Python v2.7)">set</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyramid_jsonapi.CollectionViewBase.requested_fields">
+<code class="descname">requested_fields</code><a class="headerlink" href="#pyramid_jsonapi.CollectionViewBase.requested_fields" title="Permalink to this definition">¶</a></dt>
+<dd><p>Union of attributes and relationships.</p>
+<p><strong>Query Parameters</strong></p>
+<blockquote>
+<div><strong>fields[&lt;collection&gt;]:</strong> comma separated list of fields
+(attributes or relationships) to include in data.</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">dict in the form:<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="o">&lt;</span><span class="n">colname</span><span class="o">&gt;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">column_object</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="o">...</span>
+    <span class="o">&lt;</span><span class="n">relname</span><span class="o">&gt;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">relationship_object</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="o">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)">dict</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyramid_jsonapi.CollectionViewBase.requested_include_names">
+<code class="descname">requested_include_names</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyramid_jsonapi.html#CollectionViewBase.requested_include_names"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyramid_jsonapi.CollectionViewBase.requested_include_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse any ‘include’ param in http request.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">names of all requested includes.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#set" title="(in Python v2.7)">set</a></td>
+</tr>
+</tbody>
+</table>
+<dl class="docutils">
+<dt>Default:</dt>
+<dd>set: names of all direct relationships of self.model.</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyramid_jsonapi.CollectionViewBase.requested_relationships">
+<code class="descname">requested_relationships</code><a class="headerlink" href="#pyramid_jsonapi.CollectionViewBase.requested_relationships" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a dictionary of relationships.</p>
+<p><strong>Query Parameters</strong></p>
+<blockquote>
+<div><strong>fields[&lt;collection&gt;]:</strong> comma separated list of fields
+(attributes or relationships) to include in data.</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">dict in the form:<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="o">&lt;</span><span class="n">relname</span><span class="o">&gt;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">relationship_object</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="o">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)">dict</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyramid_jsonapi.CollectionViewBase.schemas">
+<code class="descname">schemas</code><em class="property"> = None</em><a class="headerlink" href="#pyramid_jsonapi.CollectionViewBase.schemas" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pyramid_jsonapi.CollectionViewBase.serialise_db_item">
+<code class="descname">serialise_db_item</code><span class="sig-paren">(</span><em>item</em>, <em>included</em>, <em>include_path=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyramid_jsonapi.html#CollectionViewBase.serialise_db_item"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyramid_jsonapi.CollectionViewBase.serialise_db_item" title="Permalink to this definition">¶</a></dt>
+<dd><p>Serialise an individual database item to JSON-API.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>item</strong> – item to serialise.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first simple">
+<li><strong>included</strong> (<a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)"><em>dict</em></a>) – dictionary to be filled with included resource
+objects.</li>
+<li><strong>include_path</strong> (<em>list</em>) – list tracking current include path for
+recursive calls.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">resource object dictionary.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)">dict</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyramid_jsonapi.CollectionViewBase.serialise_resource_identifier">
+<code class="descname">serialise_resource_identifier</code><span class="sig-paren">(</span><em>obj_id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyramid_jsonapi.html#CollectionViewBase.serialise_resource_identifier"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyramid_jsonapi.CollectionViewBase.serialise_resource_identifier" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a resource identifier dictionary for id “obj_id”</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyramid_jsonapi.CollectionViewBase.single_item_query">
+<code class="descname">single_item_query</code><a class="headerlink" href="#pyramid_jsonapi.CollectionViewBase.single_item_query" title="Permalink to this definition">¶</a></dt>
+<dd><p>A query representing the single item referenced by the request.</p>
+<p><strong>URL (matchdict) Parameters</strong></p>
+<blockquote>
+<div><strong>id</strong> (<em>str</em>): resource id</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">query which will fetch item with id
+‘id’.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">sqlalchemy.orm.query.Query</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyramid_jsonapi.CollectionViewBase.single_return">
+<code class="descname">single_return</code><span class="sig-paren">(</span><em>query</em>, <em>not_found_message=None</em>, <em>identifier=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyramid_jsonapi.html#CollectionViewBase.single_return"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyramid_jsonapi.CollectionViewBase.single_return" title="Permalink to this definition">¶</a></dt>
+<dd><p>Populate return dictionary for a single item.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>query</strong> (<em>sqlalchemy.orm.query.Query</em>) – query designed to return one item.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first simple">
+<li><strong>not_found_message</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/2/library/constants.html#None" title="(in Python v2.7)"><em>None</em></a>) – <p>if an item is not found either:</p>
+<ul>
+<li>raise 404 with <code class="docutils literal"><span class="pre">not_found_message</span></code> if it is a str;</li>
+<li>or return <code class="docutils literal"><span class="pre">{&quot;data&quot;:</span> <span class="pre">None}</span></code> if <code class="docutils literal"><span class="pre">not_found_message</span></code> is None.</li>
+</ul>
+</li>
+<li><strong>identifier</strong> – return identifier if True, object if false.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><p>dict in the form:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="n">resource</span> <span class="nb">object</span> <span class="p">}</span>
+
+    <span class="n">optionally</span><span class="o">...</span>
+    <span class="s2">&quot;included&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="n">included</span> <span class="n">objects</span> <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span> <span class="n">resource</span> <span class="n">identifier</span> <span class="p">}</span>
+</pre></div>
+</div>
+</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first"><a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)">dict</a></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><code class="xref py py-exc docutils literal"><span class="pre">HTTPNotFound</span></code> – if the item is not found.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyramid_jsonapi.CollectionViewBase.view_classes">
+<code class="descname">view_classes</code><em class="property"> = None</em><a class="headerlink" href="#pyramid_jsonapi.CollectionViewBase.view_classes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pyramid_jsonapi.CollectionViewBase.view_instance">
+<code class="descname">view_instance</code><span class="sig-paren">(</span><em>model</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyramid_jsonapi.html#CollectionViewBase.view_instance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyramid_jsonapi.CollectionViewBase.view_instance" title="Permalink to this definition">¶</a></dt>
+<dd><p>(memoised) get an instance of view class for model.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>model</strong> (<em>DeclarativeMeta</em>) – model class.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">subclass of CollectionViewBase providing view for <code class="docutils literal"><span class="pre">model</span></code>.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">class</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyramid_jsonapi.DebugView">
+<em class="property">class </em><code class="descclassname">pyramid_jsonapi.</code><code class="descname">DebugView</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyramid_jsonapi.html#DebugView"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyramid_jsonapi.DebugView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+<p>Pyramid view class defining a debug API.</p>
+<p>These are available as <code class="docutils literal"><span class="pre">/debug/{action}</span></code> if
+<code class="docutils literal"><span class="pre">pyramid_jsonapi.debug.debug_endpoints</span> <span class="pre">==</span> <span class="pre">'true'</span></code>.</p>
+<dl class="attribute">
+<dt id="pyramid_jsonapi.DebugView.engine">
+<code class="descname">engine</code><a class="headerlink" href="#pyramid_jsonapi.DebugView.engine" title="Permalink to this definition">¶</a></dt>
+<dd><p>sqlalchemy engine with connection to the db.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyramid_jsonapi.DebugView.metadata">
+<code class="descname">metadata</code><a class="headerlink" href="#pyramid_jsonapi.DebugView.metadata" title="Permalink to this definition">¶</a></dt>
+<dd><p>sqlalchemy model metadata</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyramid_jsonapi.DebugView.test_data">
+<code class="descname">test_data</code><a class="headerlink" href="#pyramid_jsonapi.DebugView.test_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>module with an <code class="docutils literal"><span class="pre">add_to_db()</span></code> method which will populate
+the database</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyramid_jsonapi.DebugView.drop">
+<code class="descname">drop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyramid_jsonapi.html#DebugView.drop"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyramid_jsonapi.DebugView.drop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Drop all tables from the database!!!</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyramid_jsonapi.DebugView.populate">
+<code class="descname">populate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyramid_jsonapi.html#DebugView.populate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyramid_jsonapi.DebugView.populate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create tables and populate with test data.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyramid_jsonapi.DebugView.reset">
+<code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyramid_jsonapi.html#DebugView.reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyramid_jsonapi.DebugView.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>The same as ‘drop’ and then ‘populate’.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyramid_jsonapi.EndpointData">
+<em class="property">class </em><code class="descclassname">pyramid_jsonapi.</code><code class="descname">EndpointData</code><span class="sig-paren">(</span><em>config</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyramid_jsonapi.html#EndpointData"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyramid_jsonapi.EndpointData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+<p>Class to hold endpoint data and utility methods.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>config</strong> – A pyramid Configurator object.</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="pyramid_jsonapi.EndpointData.add_routes_views">
+<code class="descname">add_routes_views</code><span class="sig-paren">(</span><em>view</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyramid_jsonapi.html#EndpointData.add_routes_views"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyramid_jsonapi.EndpointData.add_routes_views" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate routes and views from the endpoints data object.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>view</strong> – A view_class to associate routes and views with.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyramid_jsonapi.EndpointData.make_route_name">
+<code class="descname">make_route_name</code><span class="sig-paren">(</span><em>name</em>, <em>suffix=''</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyramid_jsonapi.html#EndpointData.make_route_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyramid_jsonapi.EndpointData.make_route_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attach prefix and suffix to name to generate a route_name.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> – A pyramid route name.</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><strong>suffix</strong> – An (optional) suffix to append to the route name.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyramid_jsonapi.EndpointData.make_route_pattern">
+<code class="descname">make_route_pattern</code><span class="sig-paren">(</span><em>name</em>, <em>suffix=''</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyramid_jsonapi.html#EndpointData.make_route_pattern"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyramid_jsonapi.EndpointData.make_route_pattern" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attach prefix and suffix to name to generate a route_name.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> – A pyramid route name.</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><strong>suffix</strong> – An (optional) suffix to append to the route name.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyramid_jsonapi.FilterRegistry">
+<em class="property">class </em><code class="descclassname">pyramid_jsonapi.</code><code class="descname">FilterRegistry</code><a class="reference internal" href="../_modules/pyramid_jsonapi.html#FilterRegistry"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyramid_jsonapi.FilterRegistry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+<p>Registry of allowed filter operators.</p>
+<dl class="attribute">
+<dt id="pyramid_jsonapi.FilterRegistry.data">
+<code class="descname">data</code><a class="headerlink" href="#pyramid_jsonapi.FilterRegistry.data" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>dict</em> – data store for filter op information.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyramid_jsonapi.FilterRegistry.get_filter">
+<code class="descname">get_filter</code><span class="sig-paren">(</span><em>column_type</em>, <em>filter_name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyramid_jsonapi.html#FilterRegistry.get_filter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyramid_jsonapi.FilterRegistry.get_filter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get dictionary of filter information.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>column_type</strong> (<em>class</em>) – type (class object, not name) of a Column.</li>
+<li><strong>filter_name</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) – name of filter param in URL.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><dl class="docutils">
+<dt>information dictionary for filter. Type specific entry if it</dt>
+<dd><p class="first last">exists, entry from ‘__ALL__’ if it does not.</p>
+</dd>
+</dl>
+</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first"><a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)">dict</a></p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><code class="xref py py-exc docutils literal"><span class="pre">KeyError</span></code> – if filter_name is not in the type specific or ALL sections.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyramid_jsonapi.FilterRegistry.register">
+<code class="descname">register</code><span class="sig-paren">(</span><em>comparator_name</em>, <em>filter_name=None</em>, <em>value_transform=&lt;function FilterRegistry.&lt;lambda&gt;&gt;</em>, <em>column_type='__ALL__'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyramid_jsonapi.html#FilterRegistry.register"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyramid_jsonapi.FilterRegistry.register" title="Permalink to this definition">¶</a></dt>
+<dd><p>Register a new filter operator.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>comparator_name</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) – name of sqlalchemy comparator method.</li>
+<li><strong>filter_name</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) – name of filter param in URL. Defaults to
+comparator_name with any occurrences of ‘__’ removed (so ‘__eq__’
+defaults to ‘eq’, for example).</li>
+<li><strong>value_transform</strong> (<em>func</em>) – function taking the filter value as the only
+argument and returning a transformed value. Defaults to a
+function returning an unmodified value.</li>
+<li><strong>column_type</strong> (<em>class</em>) – type (class object, not name) for which this
+operator is to be registered. Defaults to ‘__ALL__’ (the string)
+which makes the operator valid for all column types.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyramid_jsonapi.FilterRegistry.valid_filter_names">
+<code class="descname">valid_filter_names</code><span class="sig-paren">(</span><em>column_types=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyramid_jsonapi.html#FilterRegistry.valid_filter_names"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyramid_jsonapi.FilterRegistry.valid_filter_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return set of supported filter operator names.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyramid_jsonapi.PyramidJSONAPI">
+<em class="property">class </em><code class="descclassname">pyramid_jsonapi.</code><code class="descname">PyramidJSONAPI</code><span class="sig-paren">(</span><em>config</em>, <em>models</em>, <em>get_dbsession</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyramid_jsonapi.html#PyramidJSONAPI"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyramid_jsonapi.PyramidJSONAPI" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+<dl class="method">
+<dt id="pyramid_jsonapi.PyramidJSONAPI.append_callback_set_to_all_views">
+<code class="descname">append_callback_set_to_all_views</code><span class="sig-paren">(</span><em>set_name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyramid_jsonapi.html#PyramidJSONAPI.append_callback_set_to_all_views"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyramid_jsonapi.PyramidJSONAPI.append_callback_set_to_all_views" title="Permalink to this definition">¶</a></dt>
+<dd><p>Append a named set of callbacks to all view classes.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>set_name</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) – key in <code class="docutils literal"><span class="pre">callback_sets</span></code>.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyramid_jsonapi.PyramidJSONAPI.collection_view_factory">
+<code class="descname">collection_view_factory</code><span class="sig-paren">(</span><em>model</em>, <em>collection_name=None</em>, <em>expose_fields=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyramid_jsonapi.html#PyramidJSONAPI.collection_view_factory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyramid_jsonapi.PyramidJSONAPI.collection_view_factory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build a class to handle requests for model.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>model</strong> – a model class derived from DeclarativeMeta.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
+<li><strong>collection_name</strong> – string name of collection.</li>
+<li><strong>expose_fields</strong> – set of field names to expose.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyramid_jsonapi.PyramidJSONAPI.create_jsonapi">
+<code class="descname">create_jsonapi</code><span class="sig-paren">(</span><em>engine=None</em>, <em>test_data=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyramid_jsonapi.html#PyramidJSONAPI.create_jsonapi"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyramid_jsonapi.PyramidJSONAPI.create_jsonapi" title="Permalink to this definition">¶</a></dt>
+<dd><p>Auto-create jsonapi from module or iterable of sqlAlchemy models.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
+<li><strong>engine</strong> – a sqlalchemy.engine.Engine instance. Only required if using the
+debug view.</li>
+<li><strong>test_data</strong> – a module with an <code class="docutils literal"><span class="pre">add_to_db()</span></code> method which will populate
+the database.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyramid_jsonapi.PyramidJSONAPI.create_jsonapi_using_magic_and_pixie_dust">
+<code class="descname">create_jsonapi_using_magic_and_pixie_dust</code><span class="sig-paren">(</span><em>engine=None</em>, <em>test_data=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pyramid_jsonapi.PyramidJSONAPI.create_jsonapi_using_magic_and_pixie_dust" title="Permalink to this definition">¶</a></dt>
+<dd><p>Auto-create jsonapi from module or iterable of sqlAlchemy models.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
+<li><strong>engine</strong> – a sqlalchemy.engine.Engine instance. Only required if using the
+debug view.</li>
+<li><strong>test_data</strong> – a module with an <code class="docutils literal"><span class="pre">add_to_db()</span></code> method which will populate
+the database.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyramid_jsonapi.PyramidJSONAPI.create_resource">
+<code class="descname">create_resource</code><span class="sig-paren">(</span><em>model</em>, <em>collection_name=None</em>, <em>expose_fields=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyramid_jsonapi.html#PyramidJSONAPI.create_resource"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyramid_jsonapi.PyramidJSONAPI.create_resource" title="Permalink to this definition">¶</a></dt>
+<dd><p>Produce a set of resource endpoints.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>model</strong> – a model class derived from DeclarativeMeta.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
+<li><strong>collection_name</strong> – string name of collection. Passed through to
+<code class="docutils literal"><span class="pre">collection_view_factory()</span></code></li>
+<li><strong>expose_fields</strong> – set of field names to be exposed. Passed through to
+<code class="docutils literal"><span class="pre">collection_view_factory()</span></code></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="pyramid_jsonapi.PyramidJSONAPI.error">
+<em class="property">static </em><code class="descname">error</code><span class="sig-paren">(</span><em>exc</em>, <em>request</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyramid_jsonapi.html#PyramidJSONAPI.error"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyramid_jsonapi.PyramidJSONAPI.error" title="Permalink to this definition">¶</a></dt>
+<dd><p>Error method to return jsonapi compliant errors.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyramid_jsonapi.PyramidJSONAPI.view_classes">
+<code class="descname">view_classes</code><em class="property"> = {}</em><a class="headerlink" href="#pyramid_jsonapi.PyramidJSONAPI.view_classes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="pyramid_jsonapi.create_jsonapi">
+<code class="descclassname">pyramid_jsonapi.</code><code class="descname">create_jsonapi</code><span class="sig-paren">(</span><em>config</em>, <em>models</em>, <em>get_dbsession</em>, <em>engine=None</em>, <em>test_data=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyramid_jsonapi.html#create_jsonapi"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyramid_jsonapi.create_jsonapi" title="Permalink to this definition">¶</a></dt>
+<dd><p>Auto-create jsonapi from module or iterable of sqlAlchemy models.</p>
+<p>DEPRECATED: This module method is deprecated!
+Please use the PyramidJSONAPI class method instead.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>config</strong> – <code class="docutils literal"><span class="pre">pyramid.config.Configurator</span></code> object from current app.</li>
+<li><strong>models</strong> – an iterable (or module) of model classes derived
+from DeclarativeMeta.</li>
+<li><strong>get_dbsession</strong> – a callable shich returns a
+sqlalchemy.orm.session.Session or equivalent.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
+<li><strong>engine</strong> – a sqlalchemy.engine.Engine instance. Only required if using the
+debug view.</li>
+<li><strong>test_data</strong> – a module with an <code class="docutils literal"><span class="pre">add_to_db()</span></code> method which will populate
+the database.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyramid_jsonapi.create_jsonapi_using_magic_and_pixie_dust">
+<code class="descclassname">pyramid_jsonapi.</code><code class="descname">create_jsonapi_using_magic_and_pixie_dust</code><span class="sig-paren">(</span><em>config</em>, <em>models</em>, <em>get_dbsession</em>, <em>engine=None</em>, <em>test_data=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pyramid_jsonapi.create_jsonapi_using_magic_and_pixie_dust" title="Permalink to this definition">¶</a></dt>
+<dd><p>Auto-create jsonapi from module or iterable of sqlAlchemy models.</p>
+<p>DEPRECATED: This module method is deprecated!
+Please use the PyramidJSONAPI class method instead.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>config</strong> – <code class="docutils literal"><span class="pre">pyramid.config.Configurator</span></code> object from current app.</li>
+<li><strong>models</strong> – an iterable (or module) of model classes derived
+from DeclarativeMeta.</li>
+<li><strong>get_dbsession</strong> – a callable shich returns a
+sqlalchemy.orm.session.Session or equivalent.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
+<li><strong>engine</strong> – a sqlalchemy.engine.Engine instance. Only required if using the
+debug view.</li>
+<li><strong>test_data</strong> – a module with an <code class="docutils literal"><span class="pre">add_to_db()</span></code> method which will populate
+the database.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">pyramid_jsonapi package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-pyramid_jsonapi">Module contents</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="../index.html" title="previous chapter">pyramid-jsonapi Documentation</a></li>
+      <li>Next: <a href="pyramid_jsonapi.callbacks_doc.html" title="next chapter">pyramid_jsonapi.callbacks_doc module</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/apidoc/pyramid_jsonapi.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Colin Higgs.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/apidoc/pyramid_jsonapi.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
