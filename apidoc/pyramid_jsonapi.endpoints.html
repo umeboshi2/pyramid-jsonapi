@@ -1,0 +1,342 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pyramid_jsonapi.endpoints module &mdash; pyramid_jsonapi 1.0.4.dev90.dev145 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="pyramid_jsonapi 1.0.4.dev90.dev145 documentation" href="../index.html"/>
+        <link rel="up" title="pyramid_jsonapi package" href="pyramid_jsonapi.html"/>
+        <link rel="next" title="pyramid_jsonapi.jsonapi module" href="pyramid_jsonapi.jsonapi.html"/>
+        <link rel="prev" title="pyramid_jsonapi.callbacks_doc module" href="pyramid_jsonapi.callbacks_doc.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> pyramid_jsonapi
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.4.dev90.dev145
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../welcome.html">The pyramid-jsonapi project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../welcome.html#quick-start">Quick start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api-creation.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../client.html">Consuming the API from the Client End</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../customisation.html">Customising the Generated API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../metadata.html">Metadata Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developing.html">Developing pyramid-jsonapi</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="pyramid_jsonapi.html">pyramid_jsonapi package</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="pyramid_jsonapi.html#subpackages">Subpackages</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="pyramid_jsonapi.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="pyramid_jsonapi.callbacks_doc.html">pyramid_jsonapi.callbacks_doc module</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">pyramid_jsonapi.endpoints module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyramid_jsonapi.jsonapi.html">pyramid_jsonapi.jsonapi module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyramid_jsonapi.settings.html">pyramid_jsonapi.settings module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyramid_jsonapi.version.html">pyramid_jsonapi.version module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyramid_jsonapi.html#module-pyramid_jsonapi">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">pyramid_jsonapi</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="pyramid_jsonapi.html">pyramid_jsonapi package</a> &raquo;</li>
+      
+    <li>pyramid_jsonapi.endpoints module</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/apidoc/pyramid_jsonapi.endpoints.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-pyramid_jsonapi.endpoints">
+<span id="pyramid-jsonapi-endpoints-module"></span><h1>pyramid_jsonapi.endpoints module<a class="headerlink" href="#module-pyramid_jsonapi.endpoints" title="Permalink to this headline">¶</a></h1>
+<p>Classes to store and manipulate endpoints and routes.</p>
+<dl class="class">
+<dt id="pyramid_jsonapi.endpoints.EndpointData">
+<em class="property">class </em><code class="descclassname">pyramid_jsonapi.endpoints.</code><code class="descname">EndpointData</code><span class="sig-paren">(</span><em>api</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyramid_jsonapi/endpoints.html#EndpointData"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyramid_jsonapi.endpoints.EndpointData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+<p>Class to hold endpoint data and utility methods.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>api</strong> &#8211; A PyramidJSONAPI object.</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="pyramid_jsonapi.endpoints.EndpointData.add_routes_views">
+<code class="descname">add_routes_views</code><span class="sig-paren">(</span><em>view</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyramid_jsonapi/endpoints.html#EndpointData.add_routes_views"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyramid_jsonapi.endpoints.EndpointData.add_routes_views" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate routes and views from the endpoints data object.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>view</strong> &#8211; A view_class to associate routes and views with.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyramid_jsonapi.endpoints.EndpointData.make_route_name">
+<code class="descname">make_route_name</code><span class="sig-paren">(</span><em>name</em>, <em>suffix=''</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyramid_jsonapi/endpoints.html#EndpointData.make_route_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyramid_jsonapi.endpoints.EndpointData.make_route_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attach prefix and suffix to name to generate a route_name.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> &#8211; A pyramid route name.</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><strong>suffix</strong> &#8211; An (optional) suffix to append to the route name.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyramid_jsonapi.endpoints.EndpointData.route_pattern_to_suffix">
+<code class="descname">route_pattern_to_suffix</code><span class="sig-paren">(</span><em>pattern_dict</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyramid_jsonapi/endpoints.html#EndpointData.route_pattern_to_suffix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyramid_jsonapi.endpoints.EndpointData.route_pattern_to_suffix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert route_pattern dict to suffix string.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyramid_jsonapi.endpoints.RoutePatternConstructor">
+<em class="property">class </em><code class="descclassname">pyramid_jsonapi.endpoints.</code><code class="descname">RoutePatternConstructor</code><span class="sig-paren">(</span><em>sep='/'</em>, <em>main_prefix=''</em>, <em>api_prefix='api'</em>, <em>metadata_prefix='metadata'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyramid_jsonapi/endpoints.html#RoutePatternConstructor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyramid_jsonapi.endpoints.RoutePatternConstructor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+<p>Construct pyramid_jsonapi route patterns.</p>
+<dl class="method">
+<dt id="pyramid_jsonapi.endpoints.RoutePatternConstructor.api_pattern">
+<code class="descname">api_pattern</code><span class="sig-paren">(</span><em>name</em>, <em>*components</em>, <em>rstrip=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyramid_jsonapi/endpoints.html#RoutePatternConstructor.api_pattern"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyramid_jsonapi.endpoints.RoutePatternConstructor.api_pattern" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a route pattern from a collection name and suffix components.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) &#8211; A collection name.</li>
+<li><strong>rstrip</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#bool" title="(in Python v2.7)"><em>bool</em></a>) &#8211; Strip trailing separator (defaults to True).</li>
+<li><strong>*components</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) &#8211; components to add after collection name.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyramid_jsonapi.endpoints.RoutePatternConstructor.metadata_pattern">
+<code class="descname">metadata_pattern</code><span class="sig-paren">(</span><em>metadata_type</em>, <em>*components</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyramid_jsonapi/endpoints.html#RoutePatternConstructor.metadata_pattern"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyramid_jsonapi.endpoints.RoutePatternConstructor.metadata_pattern" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a metadata route pattern.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>metadata_type</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) &#8211; Metadata type (e.g. swagger, json-schema).</li>
+<li><strong>*components</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) &#8211; components to add after metadata type.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyramid_jsonapi.endpoints.RoutePatternConstructor.pattern_from_components">
+<code class="descname">pattern_from_components</code><span class="sig-paren">(</span><em>*components</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyramid_jsonapi/endpoints.html#RoutePatternConstructor.pattern_from_components"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyramid_jsonapi.endpoints.RoutePatternConstructor.pattern_from_components" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct a route pattern from components.</p>
+<p>Join components together with self.sep. Remove all occurrences of &#8216;&#8217;,
+except at the beginning, so that there are no double or trailing
+separators.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>*components</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) &#8211; route pattern components.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pyramid_jsonapi.jsonapi.html" class="btn btn-neutral float-right" title="pyramid_jsonapi.jsonapi module" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pyramid_jsonapi.callbacks_doc.html" class="btn btn-neutral" title="pyramid_jsonapi.callbacks_doc module" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Colin Higgs.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.0.4.dev90.dev145',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

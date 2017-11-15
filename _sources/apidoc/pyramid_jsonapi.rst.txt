@@ -1,5 +1,12 @@
-pyramid\_jsonapi package
-========================
+pyramid_jsonapi package
+=======================
+
+Subpackages
+-----------
+
+.. toctree::
+
+    pyramid_jsonapi.metadata
 
 Submodules
 ----------
@@ -7,6 +14,10 @@ Submodules
 .. toctree::
 
    pyramid_jsonapi.callbacks_doc
+   pyramid_jsonapi.endpoints
+   pyramid_jsonapi.jsonapi
+   pyramid_jsonapi.settings
+   pyramid_jsonapi.version
 
 Module contents
 ---------------

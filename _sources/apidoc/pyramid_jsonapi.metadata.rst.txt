@@ -1,0 +1,17 @@
+pyramid_jsonapi.metadata package
+================================
+
+Subpackages
+-----------
+
+.. toctree::
+
+    pyramid_jsonapi.metadata.JSONSchema
+
+Module contents
+---------------
+
+.. automodule:: pyramid_jsonapi.metadata
+    :members:
+    :undoc-members:
+    :show-inheritance:

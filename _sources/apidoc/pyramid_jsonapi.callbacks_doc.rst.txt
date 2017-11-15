@@ -1,5 +1,5 @@
-pyramid\_jsonapi\.callbacks\_doc module
-=======================================
+pyramid_jsonapi.callbacks_doc module
+====================================
 
 .. automodule:: pyramid_jsonapi.callbacks_doc
     :members:

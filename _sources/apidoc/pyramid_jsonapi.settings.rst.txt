@@ -1,0 +1,7 @@
+pyramid_jsonapi.settings module
+===============================
+
+.. automodule:: pyramid_jsonapi.settings
+    :members:
+    :undoc-members:
+    :show-inheritance:
